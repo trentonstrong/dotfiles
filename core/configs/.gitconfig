@@ -3,6 +3,7 @@
 	# Include user-specific info like git credentials.
 	path = ~/dotfiles/personal/.gitconfig
 	path = ~/shopify-dotfiles/personal/.gitconfig
+	path = /Users/trent/.config/dev/gitconfig
 
 [alias]
 
@@ -76,7 +77,6 @@
 
 	# Detect copies as well as renames
 	renames = copies
-	algorithm = patience
 
 [help]
 
@@ -96,3 +96,6 @@
 	# resolve that same conflict in a future rebase, this setting will reuse your previously recorded conflict resolution.
 	enabled = true
 	autoupdate = true
+[user]
+	name = Trenton Strong
+	email = trent.strong@shopify.com
