@@ -12,11 +12,13 @@ case $ZSH_HOST_OS in
   $BREW_EXECUTABLE install fd
   $BREW_EXECUTABLE install bat
   $BREW_EXECUTABLE install exa
+  $BREW_EXECUTABLE install tig
 ;;
-esac
 
-if [ $SPIN ]; then
+  linux*)
+  sudo apt-get install -y ripgrep
   sudo apt-get install -y fd
   sudo apt-get install -y bat
   sudo apt-get install -y exa
-fi
+  sudo apt-get install -y tig
+esac
