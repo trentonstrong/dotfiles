@@ -19,23 +19,25 @@ case $ZSH_HOST_OS in
   HOST_OS_ID=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release | tr -d '"')
   case $HOST_OS_ID in
     ubuntu)
-      PKG_INSTALL_COMMAND="sudo apt-get install -y"
-      ;;
+      ;&
     debian)
-      PKG_INSTALL_COMMAND="sudo apt-get install -y"
+      PKG_INSTALL_COMMAND="apt-get install -y"
+        sudo apt-get install -y ripgrep
+        sudo apt-get install -y fd
+        sudo apt-get install -y bat
+        sudo apt-get install -y exa
+        sudo apt-get install -y tig
       ;;
     arch)
-      PKG_INSTALL_COMMAND="sudo pacman -S --noconfirm"
+      sudo pacman -S --noconfirm ripgrep
+      sudo pacman -S --noconfirm fd
+      sudo pacman -S --noconfirm bat
+      sudo pacman -S --noconfirm exa
+      sudo pacman -S --noconfirm tig
       ;;
     *)
       echo "Unsupported Linux distribution: $HOST_OS_ID"
       exit 1
       ;;
   esac
-
-  $PKG_INSTALL_COMMAND ripgrep
-  $PKG_INSTALL_COMMAND fd
-  $PKG_INSTALL_COMMAND bat
-  $PKG_INSTALL_COMMAND exa
-  $PKG_INSTALL_COMMAND tig
 esac
