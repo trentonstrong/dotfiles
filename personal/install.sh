@@ -16,9 +16,26 @@ case $ZSH_HOST_OS in
 ;;
 
   linux*)
-  sudo apt-get install -y ripgrep
-  sudo apt-get install -y fd
-  sudo apt-get install -y bat
-  sudo apt-get install -y exa
-  sudo apt-get install -y tig
+  HOST_OS_ID=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release | tr -d '"')
+  case $HOST_OS_ID in
+    ubuntu)
+      PKG_INSTALL_COMMAND="sudo apt-get install -y"
+      ;;
+    debian)
+      PKG_INSTALL_COMMAND="sudo apt-get install -y"
+      ;;
+    arch)
+      PKG_INSTALL_COMMAND="sudo pacman -S --noconfirm"
+      ;;
+    *)
+      echo "Unsupported Linux distribution: $HOST_OS_ID"
+      exit 1
+      ;;
+  esac
+
+  $PKG_INSTALL_COMMAND ripgrep
+  $PKG_INSTALL_COMMAND fd
+  $PKG_INSTALL_COMMAND bat
+  $PKG_INSTALL_COMMAND exa
+  $PKG_INSTALL_COMMAND tig
 esac
