@@ -3,7 +3,7 @@
 # Put anything here that you want to exist on all your environment, and to have the highest priority
 # over any other customization.
 
-alias ls="exa"
+alias ls="eza"
 alias ll="ls -lh"
 alias docker="podman"
 alias docker-compose="podman-compose"

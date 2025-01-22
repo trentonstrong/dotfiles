@@ -11,7 +11,7 @@ case $ZSH_HOST_OS in
   $BREW_EXECUTABLE install ripgrep
   $BREW_EXECUTABLE install fd
   $BREW_EXECUTABLE install bat
-  $BREW_EXECUTABLE install exa
+  $BREW_EXECUTABLE install eza
   $BREW_EXECUTABLE install tig
 ;;
 
@@ -25,14 +25,14 @@ case $ZSH_HOST_OS in
         sudo apt-get install -y ripgrep
         sudo apt-get install -y fd
         sudo apt-get install -y bat
-        sudo apt-get install -y exa
+        sudo apt-get install -y eza
         sudo apt-get install -y tig
       ;;
     arch)
       sudo pacman -S --noconfirm ripgrep
       sudo pacman -S --noconfirm fd
       sudo pacman -S --noconfirm bat
-      sudo pacman -S --noconfirm exa
+      sudo pacman -S --noconfirm eza
       sudo pacman -S --noconfirm tig
       ;;
     *)
