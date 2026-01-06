@@ -13,6 +13,7 @@ case $ZSH_HOST_OS in
   $BREW_EXECUTABLE install bat
   $BREW_EXECUTABLE install eza
   $BREW_EXECUTABLE install tig
+  $BREW_EXECUTABLE install nvm
 ;;
 
   linux*)
@@ -27,6 +28,7 @@ case $ZSH_HOST_OS in
         sudo apt-get install -y bat
         sudo apt-get install -y eza
         sudo apt-get install -y tig
+	sudo apt-get install -y nvm
       ;;
     arch)
       sudo pacman -S --noconfirm ripgrep
@@ -34,6 +36,7 @@ case $ZSH_HOST_OS in
       sudo pacman -S --noconfirm bat
       sudo pacman -S --noconfirm eza
       sudo pacman -S --noconfirm tig
+      sudo pacman -S --noconfirm nvm
       ;;
     *)
       echo "Unsupported Linux distribution: $HOST_OS_ID"
