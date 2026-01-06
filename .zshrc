@@ -62,3 +62,5 @@ source ~/extra.zsh
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+export PATH="$HOME/.local/bin:$PATH"
+source /usr/share/nvm/init-nvm.sh
