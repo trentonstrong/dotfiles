@@ -9,16 +9,20 @@ colors
 # and that you don't want to follow you across environments.
 touch ~/extra.zsh
 
-DOTFILES_DIRECTORY_NAME=$([ $SPIN ] && echo "shopify-dotfiles" || echo "dotfiles")
+DOTFILES_DIRECTORY_NAME=$([[ -n ${SPIN:-} ]] && echo "shopify-dotfiles" || echo "dotfiles")
 ZSH_HOST_OS=$(uname | awk '{print tolower($0)}')
 
 case $ZSH_HOST_OS in
   darwin*)
 
-  BREW_EXECUTABLE=/opt/homebrew/bin/brew
+  BREW_EXECUTABLE=$(command -v brew || true)
 
-  $BREW_EXECUTABLE shellenv > $HOME/.dotfile_brew_setup
-  $BREW_EXECUTABLE install coreutils
+  if [[ -x $BREW_EXECUTABLE ]]; then
+    $BREW_EXECUTABLE shellenv > $HOME/.dotfile_brew_setup
+    $BREW_EXECUTABLE install coreutils
+  else
+    echo "Homebrew not found; skipping brew installs."
+  fi
 ;;
 esac
 
@@ -30,7 +34,7 @@ if [[ ! -d $HOME/antigen ]]; then
 	cd -
 fi
 
-if [ $SPIN ]; then
+if [[ -n ${SPIN:-} ]]; then
   # Install Ripgrep for better code searching: `rg <string>` to search. Obeys .gitignore
   sudo apt-get install -y ripgrep
 fi

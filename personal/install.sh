@@ -6,14 +6,18 @@ ZSH_HOST_OS=$(uname | awk '{print tolower($0)}')
 case $ZSH_HOST_OS in
   darwin*)
 
-  BREW_EXECUTABLE=/opt/homebrew/bin/brew
+  BREW_EXECUTABLE=$(command -v brew || true)
 
-  $BREW_EXECUTABLE install ripgrep
-  $BREW_EXECUTABLE install fd
-  $BREW_EXECUTABLE install bat
-  $BREW_EXECUTABLE install eza
-  $BREW_EXECUTABLE install tig
-  $BREW_EXECUTABLE install nvm
+  if [[ -x $BREW_EXECUTABLE ]]; then
+    $BREW_EXECUTABLE install ripgrep
+    $BREW_EXECUTABLE install fd
+    $BREW_EXECUTABLE install bat
+    $BREW_EXECUTABLE install eza
+    $BREW_EXECUTABLE install tig
+    $BREW_EXECUTABLE install nvm
+  else
+    echo "Homebrew not found; skipping brew installs."
+  fi
 ;;
 
   linux*)
@@ -22,13 +26,17 @@ case $ZSH_HOST_OS in
     ubuntu)
       ;&
     debian)
-      PKG_INSTALL_COMMAND="apt-get install -y"
-        sudo apt-get install -y ripgrep
-        sudo apt-get install -y fd
-        sudo apt-get install -y bat
-        sudo apt-get install -y eza
-        sudo apt-get install -y tig
-	sudo apt-get install -y nvm
+      sudo apt-get install -y ripgrep
+      sudo apt-get install -y fd-find
+      sudo apt-get install -y bat
+      sudo apt-get install -y eza
+      sudo apt-get install -y tig
+      if [[ -z ${NVM_DIR:-} ]]; then
+        export NVM_DIR="$HOME/.nvm"
+      fi
+      if [[ ! -d $NVM_DIR ]]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+      fi
       ;;
     arch)
       sudo pacman -S --noconfirm ripgrep
